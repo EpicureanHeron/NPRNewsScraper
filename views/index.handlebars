@@ -10,30 +10,30 @@
       <div data-id = '{{this._id}}' class="articleDiv" >
         <p><a href= '{{this.linkInfo}}'>{{this.titleInfo}}</a></p>
         <p>{{this.teaserInfo}}</p>
+      </div> 
+
+      {{#each   note}}
+
+      {{/each}}     
+         <h2>{{this.title}}</h2>
+        <p>{{this.body}}</p>
+      {{/each}}
+
+    </div>
+    {{!-- <div class="col-md-4" id="notes">
+
+       {{#each articles.note}}
+
+      <div data-id = '{{this._id}}' class="noteDiv" >
+       
       </div>      
 
       {{/each}}
 
+
+
+
     </div>
-    <div class="col-md-4" id="notes"></div>
-    {{!-- <div class="col-md-5 burgerDiv">
-      <h2>Devoured Burgers</h2>
-      
-      {{#each burgers}} {{#if devoured}}
-
-      <p class="burger eaten">
-        {{this.burger_name}} {{!--
-        <button data-movieid="{{this.id}}" class="delmovie">Delete Movie!</button>
-      </p>
-      <p>Eaten by {{this.Customer.customer_name}}</p>
-      <hr>
-      {{/if}} {{/each}}
-      --}}
-    {{!-- </div> --}} 
-
-    {{!--
-    <ul>
-      {{#each cats}} {{#if sleepy}} {{> cats/cat-block sleep=false}} {{/if}} {{/each}}
-    </ul> --}}
+     --}}
   </div>
 </div>

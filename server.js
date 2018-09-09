@@ -49,28 +49,28 @@ var PORT = 3000;
 
 app.get("/", function (req, res) {
   db.Article.find({})
-  .then(function (dbArticles) {
-    console.log(dbArticles)
+    .then(function (dbArticles) {
+      console.log(dbArticles)
 
       var hbsObject = {
-          articles: dbArticles
+        articles: dbArticles
       }
 
       res.render("index", hbsObject);
 
 
-  })
+    })
 })
 
 
-app.get("/scrape", function(req, res) {
+app.get("/scrape", function (req, res) {
   // First, we grab the body of the html with request
-  request("https://www.npr.org/sections/news/", function(error, response, html) {
+  request("https://www.npr.org/sections/news/", function (error, response, html) {
 
     // Load the HTML into cheerio
     var $ = cheerio.load(html);
 
-    $(".item-info").each(function(i, element) {
+    $(".item-info").each(function (i, element) {
       //article title
       var title = $(element).find("h2").text()
       //link
@@ -84,23 +84,23 @@ app.get("/scrape", function(req, res) {
         teaserInfo: teaser
       }
       //checks if the article's title is already in the database
-      db.Article.findOne({titleInfo: newArticle.titleInfo})
-        .then(function(articleResults){
+      db.Article.findOne({ titleInfo: newArticle.titleInfo })
+        .then(function (articleResults) {
           //if no results are found add the article
-          if(!articleResults){
-            
+          if (!articleResults) {
+
             db.Article.create(newArticle)
-            .then(function(dbArticle) {
-              // View the added result in the console
-              console.log(dbArticle);
-            })
-            .catch(function(err) {
-              // If an error occurred, send it to the client  
-              return res.json(err)          
-            });
+              .then(function (dbArticle) {
+                // View the added result in the console
+                console.log(dbArticle);
+              })
+              .catch(function (err) {
+                // If an error occurred, send it to the client  
+                return res.json(err)
+              });
           }
         })
-        .catch(function(err) {
+        .catch(function (err) {
           return res.json(err);
         })
     });
@@ -110,40 +110,46 @@ app.get("/scrape", function(req, res) {
 });
 
 // Route for getting all Articles from the db
-app.get("/articles", function(req, res) {
+app.get("/articles", function (req, res) {
   // TODO: Finish the route so it grabs all of the articles
   db.Article.find({})
 
-  .then(function(articles){
-    res.json(articles)
-  })
-  .catch(function(err) {
-    return res.json(err);
-  })
+    .then(function (articles) {
+      res.json(articles)
+    })
+    .catch(function (err) {
+      return res.json(err);
+    })
 });
 
 // Route for grabbing a specific Article by id, populate it with it's note
-app.get("/articles/:id", function(req, res) {
+app.get("/articles/:id", function (req, res) {
   // TODO
   // ====
   // Finish the route so it finds one article using the req.params.id,
   // and run the populate method with "note",
   // then responds with the article with the note included
-  db.Article.findOne({"_id": req.params.id})
+  db.Article.findOne({ "_id": req.params.id })
 
-  .populate("note")
+    .populate("note")
 
-  .then(function(articleNotes){
-    res.json(articleNotes)
-  })
-  .catch(function(err) {
-    return res.json(err);
-  })
+    .then(function (articleDB) {
+      console.log(articleDB.note)
+      var hbsObject = {
+        notes: articleDB.note
+      }
+
+      res.render("index", hbsObject);
+   //   res.json(articleDB)
+    })
+    .catch(function (err) {
+      return res.json(err);
+    })
 
 });
 
 // Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function(req, res) {
+app.post("/articles/:id", function (req, res) {
   // TODO
   // ====
   // save the new note that gets posted to the Notes collection
@@ -152,31 +158,31 @@ app.post("/articles/:id", function(req, res) {
   var notes = req.body
   db.Note.create(notes)
 
-  .then(function(noteInfo){
-        //initially tried the below
-  //   db.Article.update(
-  //     { "_id": req.params.id },
-  //     { $set:
-  //        {
-  //          "note": noteInfo
-  //        }
-  //     }
-  //  )
+    .then(function (noteInfo) {
+      //initially tried the below
+      //   db.Article.update(
+      //     { "_id": req.params.id },
+      //     { $set:
+      //        {
+      //          "note": noteInfo
+      //        }
+      //     }
+      //  )
 
-  //this is from the solution. It doesn't use $set and is using a different method (update vs findOneAndUpdate)
-    return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: noteInfo._id }, { new: true });
+      //this is from the solution. It doesn't use $set and is using a different method (update vs findOneAndUpdate)
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: noteInfo._id }, { new: true });
 
 
-  })
+    })
 
-  .catch(function(err) {
-    return res.json(err);
-  })
+    .catch(function (err) {
+      return res.json(err);
+    })
   //res.json??
 
 });
 
 // Start the server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App running on port " + PORT + "!");
 });
