@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-10">
+      <h2 class="header">NPR Stories</h2>
+
+
+      {{#each articles}}
+
+      <div data-id = '{{this._id}}' >
+        <p><a href= '{{this.linkInfo}}'>{{this.titleInfo}}</a></p>
+        <p>{{this.teaserInfo}}</p>
+      </div>      
+
+      {{/each}}
+
+    </div>
+    <div class="col-md-2"></div>
+    {{!-- <div class="col-md-5 burgerDiv">
+      <h2>Devoured Burgers</h2>
+      
+      {{#each burgers}} {{#if devoured}}
+
+      <p class="burger eaten">
+        {{this.burger_name}} {{!--
+        <button data-movieid="{{this.id}}" class="delmovie">Delete Movie!</button>
+      </p>
+      <p>Eaten by {{this.Customer.customer_name}}</p>
+      <hr>
+      {{/if}} {{/each}}
+      --}}
+    {{!-- </div> --}} 
+
+    {{!--
+    <ul>
+      {{#each cats}} {{#if sleepy}} {{> cats/cat-block sleep=false}} {{/if}} {{/each}}
+    </ul> --}}
+  </div>
+</div>
