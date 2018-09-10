@@ -134,13 +134,13 @@ app.get("/articles/:id", function (req, res) {
     .populate("note")
 
     .then(function (articleDB) {
-      console.log(articleDB.note)
-      var hbsObject = {
-        notes: articleDB.note
-      }
-
-      res.render("index", hbsObject);
-   //   res.json(articleDB)
+      // console.log(articleDB.note)
+      // var hbsObject = {
+      //   notes: articleDB.note
+      // }
+      console.log(articleDB)
+      // res.render("index", hbsObject);
+      res.json(articleDB)
     })
     .catch(function (err) {
       return res.json(err);
@@ -159,19 +159,11 @@ app.post("/articles/:id", function (req, res) {
   db.Note.create(notes)
 
     .then(function (noteInfo) {
-      //initially tried the below
-      //   db.Article.update(
-      //     { "_id": req.params.id },
-      //     { $set:
-      //        {
-      //          "note": noteInfo
-      //        }
-      //     }
-      //  )
 
       //this is from the solution. It doesn't use $set and is using a different method (update vs findOneAndUpdate)
-      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: noteInfo._id }, { new: true });
-
+      // return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: noteInfo._id }, { new: true });
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, {$push: { note: noteInfo._id }});
+     
 
     })
 
