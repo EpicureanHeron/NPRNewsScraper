@@ -50,6 +50,10 @@ $(document).on("click", ".articleDiv", function () {
 
         var pBody = $("<p>")
 
+        var button = $('<button type="button" class="btn btn-danger">Danger</button>')
+
+        button.attr("data-id", element._id)
+
         titleH2.html(element.title)
 
         pBody.html(element.body)
@@ -58,11 +62,23 @@ $(document).on("click", ".articleDiv", function () {
 
         newDiv.append(pBody)
 
+        newDiv.append(button)
+
         $("#notes").append(newDiv)
 
       });
     });
 });
+
+$(document).on("click", ".btn-danger", function () {
+
+  var thisId = $(this).attr("data-id")
+  $.ajax({
+    url: '/note/' + thisId,
+    type: 'DELETE',
+  })
+
+})
 
 
 // When you click the savenote button

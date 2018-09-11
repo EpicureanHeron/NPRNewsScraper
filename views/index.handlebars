@@ -1,32 +1,30 @@
 <div class="container">
   <div class="row">
-    
+
     <div class="col-md-8" id="articles">
       <h2 class="header">NPR Stories</h2>
 
 
       {{#each articles}}
 
-      <div data-id = '{{this._id}}' class="articleDiv" >
-        <p><a href= '{{this.linkInfo}}'>{{this.titleInfo}}</a></p>
+      <div data-id='{{this._id}}' class="articleDiv">
+        <p><a href='{{this.linkInfo}}'>{{this.titleInfo}}</a></p>
         <p>{{this.teaserInfo}}</p>
-      </div> 
+      </div>
 
-      {{#each   note}}
 
-      {{/each}}     
-         <h2>{{this.title}}</h2>
-        <p>{{this.body}}</p>
+
       {{/each}}
+
 
     </div>
     <div class="col-md-4" id="notes">
 
-       {{!-- {{#each articles.note}}
+      {{!-- {{#each articles.note}}
 
-      <div data-id = '{{this._id}}' class="noteDiv" >
-       
-      </div>      
+      <div data-id='{{this._id}}' class="noteDiv">
+
+      </div>
 
       {{/each}} --}}
 
@@ -34,6 +32,6 @@
 
 
     </div>
-    
+
   </div>
 </div>

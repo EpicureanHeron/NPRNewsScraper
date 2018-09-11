@@ -174,6 +174,24 @@ app.post("/articles/:id", function (req, res) {
 
 });
 
+app.delete("/note/:id", function (req, res) {
+  var noteId = req.params.id
+
+  db.Note.remove({"_id": noteId})
+
+
+  .then(function(response){
+    console.log(response)
+
+  })
+  .catch(function (err){
+    return res.json(err)
+  })
+
+
+
+})
+
 // Start the server
 app.listen(PORT, function () {
   console.log("App running on port " + PORT + "!");
