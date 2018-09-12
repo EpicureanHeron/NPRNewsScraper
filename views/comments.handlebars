@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class =" col-md-2"></div>
+
+    <div class="col-md-8" id="articles">
+      <h2 class="header">NPR Stories</h2>
+
+      <hr>
+        <button type="button" class="btn btn-primary scrape" >Scrape NPR</button>
+      <hr>
+      <h2>{{articleAndNotes.titleInfo}}</h2>
+
+      <p>{{articleAndNotes.teaserInfo}}</p>
+        <p>{{articleAndNotes._id}}</p>
+      
+
+{{!-- currently cannot access {{articleAndNotes._id}} from the each section...but it is available after the / in the URL so could do a window.href sort of thing. --}}
+      {{#each articleAndNotes.note}}
+
+      <div data-id='{{this._id}}' class="noteDiv">
+        <h3>{{this.title}}</h3>
+        <p>{{this.body}}</p>
+        <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}"  type="button" class="btn btn-danger">Danger</button>
+        <hr>
+      </div>
+
+
+
+      {{/each}}
+
+
+    </div>
+    <div class =" col-md-2"></div>
+    {{!-- <div class="col-md-4" id="notes"> --}}
+
+      {{!-- {{#each articles.note}}
+
+      <div data-id='{{this._id}}' class="noteDiv">
+
+      </div>
+
+      {{/each}} --}}
+
+
+
+
+    </div>
+
+  </div>
+</div>

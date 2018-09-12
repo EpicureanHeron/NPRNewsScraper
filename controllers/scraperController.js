@@ -1,5 +1,6 @@
 var request = require("request")
 var cheerio = require("cheerio");
+var mongoose = require("mongoose");
 
 var db = require("../models");
 
@@ -81,24 +82,30 @@ module.exports = function (app) {
     });
 
     // Route for grabbing a specific Article by id, populate it with it's note
-    app.get("/articles/:id", function (req, res) {
+    app.get("/:id", function (req, res) {
         // TODO
         // ====
         // Finish the route so it finds one article using the req.params.id,
         // and run the populate method with "note",
         // then responds with the article with the note included
-        db.Article.findOne({ "_id": req.params.id })
+
+        //https://stackoverflow.com/questions/17223517/mongoose-casterror-cast-to-objectid-failed-for-value-object-object-at-path
+        var articleID = mongoose.Types.ObjectId(req.params.id)
+        
+        db.Article.findOne({_id : articleID })
 
             .populate("note")
 
-            .then(function (articleDB) {
+            .then(function (articleDBwithNotes) {
                 // console.log(articleDB.note)
                 // var hbsObject = {
                 //   notes: articleDB.note
                 // }
-                console.log(articleDB)
-                // res.render("index", hbsObject);
-                res.json(articleDB)
+                var hbsObject = {
+                    articleAndNotes: articleDBwithNotes
+                }
+
+                res.render("comments", hbsObject);
             })
             .catch(function (err) {
                 return res.json(err);
@@ -149,7 +156,7 @@ module.exports = function (app) {
                     .catch(function (err) {
                         return res.json(err)
                     })
-                    
+
             })
 
             .catch(function (err) {

@@ -9,71 +9,71 @@
 
 
 // Whenever someone clicks a p tag
-$(document).on("click", ".articleDiv", function () {
-  // Empty the notes from the note section
-  $("#notes").empty();
-  // Save the id from the p tag
-  var thisId = $(this).attr("data-id");
-  console.log("clicked")
-  // Now make an ajax call for the Article
-  $.ajax({
-    method: "GET",
-    url: "/articles/" + thisId
-  })
+// $(document).on("click", ".comments", function () {
+//   // Empty the notes from the note section
+//   $("#notes").empty();
+//   // Save the id from the p tag
+//   var thisId = $(this).attr("data-id");
+//   console.log("clicked")
+//   // Now make an ajax call for the Article
+//   $.ajax({
+//     method: "GET",
+//     url: "/articles/" + thisId
+//   })
 
-    .then(function (data) {
-      console.log(data);
-      // The title of the article
-      $("#notes").append("<h2>" + data.titleInfo + "</h2>");
-      // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
-      // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
-      // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+//     .then(function (data) {
+//       console.log(data);
+//       // The title of the article
+//       $("#notes").append("<h2>" + data.titleInfo + "</h2>");
+//       // An input to enter a new title
+//       $("#notes").append("<input id='titleinput' name='title' >");
+//       // A textarea to add a new note body
+//       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+//       // A button to submit a new note, with the id of the article saved to it
+//       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
-      // If there's a note in the article
-      // if (data.note) {
-      //   // Place the title of the note in the title input
-      //   $("#titleinput").val(data.note.title);
-      //   // Place the body of the note in the body textarea
-      //   $("#bodyinput").val(data.note.body);
-      // }
+//       // If there's a note in the article
+//       // if (data.note) {
+//       //   // Place the title of the note in the title input
+//       //   $("#titleinput").val(data.note.title);
+//       //   // Place the body of the note in the body textarea
+//       //   $("#bodyinput").val(data.note.body);
+//       // }
 
-      console.log(data.note)
+//       // console.log(data.note)
 
-      data.note.forEach(element => {
+//       // data.note.forEach(element => {
 
-        var newDiv = $("<div>")
+//       //   var newDiv = $("<div>")
 
-        var titleH2 = $("<h2>")
+//       //   var titleH2 = $("<h2>")
 
-        var pBody = $("<p>")
+//       //   var pBody = $("<p>")
 
-        var button = $('<button type="button" class="btn btn-danger">Danger</button>')
+//       //   var button = $('<button type="button" class="btn btn-danger">Danger</button>')
 
-        button.attr("note-id", element._id)
+//       //   button.attr("note-id", element._id)
 
-        button.attr("article-id", data._id)
+//       //   button.attr("article-id", data._id)
 
-        titleH2.html(element.title)
+//       //   titleH2.html(element.title)
 
-        pBody.html(element.body)
+//       //   pBody.html(element.body)
 
-        newDiv.append(titleH2)
+//       //   newDiv.append(titleH2)
 
-        newDiv.append(pBody)
+//       //   newDiv.append(pBody)
 
-        newDiv.append(button)
+//       //   newDiv.append(button)
 
-        $("#notes").append(newDiv)
+//       //   $("#notes").append(newDiv)
 
-      });
-    });
-});
+//       // });
+//     });
+// });
 
 $(document).on("click", ".btn-danger", function () {
-
+  console.log("clicked delete")
   var noteID = $(this).attr("note-id")
 
   var articleID = $(this).attr("article-id")
