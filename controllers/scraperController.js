@@ -91,8 +91,8 @@ module.exports = function (app) {
 
         //https://stackoverflow.com/questions/17223517/mongoose-casterror-cast-to-objectid-failed-for-value-object-object-at-path
         var articleID = mongoose.Types.ObjectId(req.params.id)
-        
-        db.Article.findOne({_id : articleID })
+
+        db.Article.findOne({ _id: articleID })
 
             .populate("note")
 
@@ -131,6 +131,11 @@ module.exports = function (app) {
 
 
             })
+            // add this .then to force a response back to the ajax call so the page would reload after the article is created
+            .then(function (responseNewNote) {
+                res.json(responseNewNote)
+
+            })
 
             .catch(function (err) {
                 return res.json(err);
@@ -151,7 +156,7 @@ module.exports = function (app) {
                 db.Note.remove({ "_id": noteID })
 
                     .then(function (response) {
-                        console.log(response)
+                        res.json(response)
                     })
                     .catch(function (err) {
                         return res.json(err)

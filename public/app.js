@@ -76,13 +76,17 @@ $(document).on("click", ".btn-danger", function () {
   console.log("clicked delete")
   var noteID = $(this).attr("note-id")
 
-  var articleID = $(this).attr("article-id")
+  //grabs the article's ID from the url. Could not hardcode the id in the {{each}} block that generates the notes
+  var pathway =  window.location.pathname.split('/');
 
 
   $.ajax({
-    url: '/note/' + articleID + "/" + noteID,
+    url: '/note/' + pathway[1] + "/" + noteID,
     type: 'DELETE',
   })
+    .then(function(data){
+      location.reload()
+    })
 
 })
 
@@ -102,6 +106,7 @@ $(document).on("click", ".scrape", function () {
 
 // When you click the savenote button
 $(document).on("click", "#savenote", function () {
+  event.preventDefault()
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
 
@@ -119,12 +124,15 @@ $(document).on("click", "#savenote", function () {
     // With that done
     .then(function (data) {
       // Log the response
-      console.log(data);
-      // Empty the notes section
-      $("#notes").empty();
+      location.reload();
+
+      // console.log(data);
+      // $("#titleinput").val("");
+      // $("#bodyinput").val("");
+      // // Empty the notes section
+
     });
 
   // Also, remove the values entered in the input and textarea for note entry
-  $("#titleinput").val("");
-  $("#bodyinput").val("");
+
 });
