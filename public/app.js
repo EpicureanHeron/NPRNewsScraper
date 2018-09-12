@@ -52,7 +52,9 @@ $(document).on("click", ".articleDiv", function () {
 
         var button = $('<button type="button" class="btn btn-danger">Danger</button>')
 
-        button.attr("data-id", element._id)
+        button.attr("note-id", element._id)
+
+        button.attr("article-id", data._id)
 
         titleH2.html(element.title)
 
@@ -72,11 +74,28 @@ $(document).on("click", ".articleDiv", function () {
 
 $(document).on("click", ".btn-danger", function () {
 
-  var thisId = $(this).attr("data-id")
+  var noteID = $(this).attr("note-id")
+
+  var articleID = $(this).attr("article-id")
+
+
   $.ajax({
-    url: '/note/' + thisId,
+    url: '/note/' + articleID + "/" + noteID,
     type: 'DELETE',
   })
+
+})
+
+$(document).on("click", ".scrape", function () {
+
+
+  $.ajax({
+    url: '/scrape/',
+    type: 'GET',
+  })
+    .then(function (data) {
+      location.reload();
+    });
 
 })
 
