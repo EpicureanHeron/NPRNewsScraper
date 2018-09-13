@@ -7,7 +7,7 @@ var db = require("../models");
 module.exports = function (app) {
 
     app.get("/", function (req, res) {
-        db.Article.find({}).sort({date: 1})
+        db.Article.find({}).sort({date: -1})
             .then(function (dbArticles) {
                 console.log(dbArticles)
 
@@ -16,7 +16,6 @@ module.exports = function (app) {
                 }
 
                 res.render("index", hbsObject);
-
 
             })
     })
