@@ -5,8 +5,9 @@ var mongoose = require("mongoose");
 var db = require("../models");
 
 module.exports = function (app) {
+
     app.get("/", function (req, res) {
-        db.Article.find({})
+        db.Article.find({}).sort({date: 1})
             .then(function (dbArticles) {
                 console.log(dbArticles)
 
@@ -71,7 +72,7 @@ module.exports = function (app) {
     // Route for getting all Articles from the db
     app.get("/articles", function (req, res) {
         // TODO: Finish the route so it grabs all of the articles
-        db.Article.find({})
+        db.Article.find({}).sort({date: -1})
 
             .then(function (articles) {
                 res.json(articles)
@@ -90,9 +91,18 @@ module.exports = function (app) {
         // then responds with the article with the note included
 
         //https://stackoverflow.com/questions/17223517/mongoose-casterror-cast-to-objectid-failed-for-value-object-object-at-path
-        var articleID = mongoose.Types.ObjectId(req.params.id)
+      //  var articleID = mongoose.Types.ObjectId(req.params.id)
+        
+        // if (mongoose.Types.ObjectId(req.params.id)) {
 
-        db.Article.findOne({ _id: articleID })
+        //     var articleID = req.params.id
+        // }
+        // else {
+        //     console.log("whoops")
+        // }
+
+        var articleID = req.params.id
+        db.Article.findOne({ "_id": articleID })
 
             .populate("note")
 

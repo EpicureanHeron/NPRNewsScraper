@@ -6,14 +6,14 @@
       <h2 class="header">NPR Stories</h2>
 
       <hr>
-        <button type="button" class="btn btn-primary scrape" >Scrape NPR</button>
+        <button type="button" class="btn btn-success scrape" >Scrape NPR</button>
       <hr>
 
 
       {{#each articles}}
 
       <div data-id='{{this._id}}' class="articleDiv">
-        <p><a href='{{this.linkInfo}}'>{{this.titleInfo}}</a></p>
+        <h3><a href='{{this.linkInfo}}'>{{this.titleInfo}}</a></h3>
         <p>{{this.teaserInfo}}</p>
         <a href="/{{this._id}}">
         <button data-id='{{this._id}}' type="button" class="btn btn-warning ">Go To Comment Section</button>
