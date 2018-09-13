@@ -11,3 +11,31 @@ textarea, input {
     height: 200px;
     font-size: 18px;
   }
+/* 
+  #articles {
+   
+  } */
+
+  .articleDiv {
+    border-radius: 25px;
+    border-left: 1px solid black;
+    background-color:  #FFFFFF;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+  }
+
+  h2{
+    background-color: #4C85C5;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    text-align: center;
+
+  }
+
+  h2 > a {
+    color: #FFFFFF
+  }
+  /* body{
+    background-color: #F15B1C
+  } */

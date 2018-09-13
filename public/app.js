@@ -95,7 +95,7 @@ $(document).on("click", ".scrape", function () {
 
   var h2scrape = $("<h2>")
 
-  h2scrape.text("Page will automatically reload once scraping has completed")
+  h2scrape.text("Scraping NPR, please wait...")
 
   $("#articles").append(h2scrape)
 

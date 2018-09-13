@@ -1,46 +1,54 @@
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/articles">Article JSON</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/notes">Note JSON</a>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-success scrape" >Scrape NPR</button>
+      </li>
+    </ul>
+  </div>
+</nav>
   <div class="row">
     <div class=" col-md-2"></div>
 
     <div class="col-md-8" id="articles">
-      <h2 class="header">NPR Stories</h2>
-
-      <hr>
-      <a href="/"><button class="btn btn-primary">Homepage</button></a>
       
-      
-      <hr>
-      <h2>{{articleAndNotes.titleInfo}}</h2>
+      <h2><a href='{{articleAndNotes.linkInfo}}'>{{articleAndNotes.titleInfo}}</a></h2>
 
       <p>{{articleAndNotes.teaserInfo}}</p>
-   
 
-      <input id='titleinput' name='title' >
-      <textarea id='bodyinput' name='body'></textarea>
-       
-      <button data-id='{{articleAndNotes._id}}' id='savenote'>Save Note</button>
-
-
-      {{!-- currently cannot access {{articleAndNotes._id}} from the each section...but it is available after the / in
-      the URL so could do a window.href sort of thing. --}}
       {{#each articleAndNotes.note}}
 
-      <div data-id='{{this._id}}' class="noteDiv">
-        <h3>{{this.title}}</h3>
-        <p>{{this.body}}</p>
-        <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Danger</button>
-        <hr>
-      </div>
+          <div data-id='{{this._id}}' class="noteDiv">
+            <h3>{{this.title}}</h3>
+            <p>{{this.body}}</p>
+            <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Danger</button>
+            <hr>
+          </div>
 
 
 
       {{/each}}
 
+      <input id='titleinput' name='title'>
+      <textarea id='bodyinput' name='body'></textarea>
+      <button data-id='{{articleAndNotes._id}}' type="button" class="btn btn-info" id='savenote'>Add Comment</button>
+    
 
     </div>
     <div class=" col-md-2"></div>
 
   </div>
 
-</div>
-</div>

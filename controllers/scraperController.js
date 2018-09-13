@@ -81,6 +81,18 @@ module.exports = function (app) {
             })
     });
 
+    app.get("/notes", function (req, res) {
+        // TODO: Finish the route so it grabs all of the articles
+        db.Note.find({}).sort({date: -1})
+
+            .then(function (articles) {
+                res.json(articles)
+            })
+            .catch(function (err) {
+                return res.json(err);
+            })
+    });
+
     // Route for grabbing a specific Article by id, populate it with it's note
     app.get("/:id", function (req, res) {
         // TODO
