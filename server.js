@@ -33,7 +33,7 @@ app.set("view engine", "handlebars");
 
 require("./controllers/scraperController.js")(app)
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 // Routes
 
 // A GET route for scraping the echoJS website
