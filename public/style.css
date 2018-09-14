@@ -23,19 +23,37 @@ textarea, input {
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   h2{
     background-color: #4C85C5;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
-    text-align: center;
+    
 
   }
+  .btn-warning{
+    margin-bottom: 10px;
+  }
 
-  h2 > a {
+  .title > a {
     color: #FFFFFF
   }
+ .title > a:hover{
+    color: #F15B1C;
+    text-decoration: none;
+  }
+
+  .teaser {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .imageDiv {
+    margin: 20px;
+    text-align: center;
+  }
   /* body{
-    background-color: #F15B1C
+    background-color: 
   } */
