@@ -91,7 +91,13 @@ $(document).on("click", ".btn-danger", function () {
 })
 
 $(document).on("click", ".scrape", function () {
+  $("#articles").empty()
 
+  var h2scrape = $("<h2>")
+
+  h2scrape.text("Scraping NPR, please wait...")
+
+  $("#articles").append(h2scrape)
 
   $.ajax({
     url: '/scrape/',
