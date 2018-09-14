@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -15,7 +16,7 @@
         <a class="nav-link" href="/notes">Note JSON</a>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-success scrape" >Scrape NPR</button>
+        <button type="button" class="btn btn-success scrape">Scrape NPR</button>
       </li>
     </ul>
   </div>
@@ -23,12 +24,12 @@
 
 <div class="container">
   <div class="row">
-    <div class =" col-md-1"></div>
+    <div class=" col-md-1"></div>
 
     <div class="col-md-10" id="articles">
       <div class="imageDiv">
-      <img class="img-fluid" alt="Responsive image" src="https://media.bizj.us/view/img/7602002/radio-station-booth-stock*750xx2269-1279-0-0.jpg">
-    </div>
+        <img class="img-fluid" alt="Responsive image" src="https://media.bizj.us/view/img/7602002/radio-station-booth-stock*750xx2269-1279-0-0.jpg">
+      </div>
 
 
       {{#each articles}}
@@ -36,11 +37,11 @@
       <div data-id='{{this._id}}' class="articleDiv">
         <h2 class="title"><a href='{{this.linkInfo}}'>{{this.titleInfo}}</a></h2>
         <p class="teaser">{{this.teaserInfo}}</p>
-          <hr>
+        <hr>
         <a href="/{{this._id}}">
-        <button data-id='{{this._id}}' type="button" class="btn btn-warning ">Go To Comment Section</button>
+          <button data-id='{{this._id}}' type="button" class="btn btn-warning ">Go To Comment Section</button>
         </a>
-      
+
       </div>
 
 
@@ -49,7 +50,7 @@
 
 
     </div>
-    <div class =" col-md-1"></div>
+    <div class=" col-md-1"></div>
     {{!-- <div class="col-md-4" id="notes"> --}}
 
       {{!-- {{#each articles.note}}
