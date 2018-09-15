@@ -1,14 +1,20 @@
 textarea, input {
+  
     display: block;
-    width: 100%;
+    width: 80%;
     background-color: #FCF5C7;
   }
   input {
+    margin-bottom: 10px;
+    margin-right: auto;
+    margin-left: auto;
     height: 36px;
     font-size: 24px;
   }
   textarea {
     height: 200px;
+    margin-right: auto;
+    margin-left: auto;
     font-size: 18px;
   }
 /* 
@@ -16,7 +22,7 @@ textarea, input {
    
   } */
 
-  .articleDiv {
+  .articleDiv, #commentsSection {
     border-radius: 25px;
     border-left: 1px solid black;
     background-color:  #FFFFFF;
@@ -26,22 +32,51 @@ textarea, input {
     text-align: center;
   }
 
-  h2{
+  .title{
     background-color: #4C85C5;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     
 
   }
-  .btn-warning{
+  .btn-warning, .btn-danger{
     margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: #F15B1C;
+    font-weight: 600;
+    border: 1px solid #ffffff;
+    color:  #ffffff;
+  }
+
+  .btn-warning:hover, .btn-warning:active:focus, .btn-danger:hover, .btn-danger:active:focus{
+   
+    background-color: #f26b32 !important;
+    border: 1px solid black !important;
+    color: black;
+    
+  }
+
+  .btn-success{
+    background-color: #4C85C5;
+    border: 1px solid #ffffff;
+  }
+
+  .btn-success:hover, .btn-success:active:focus{
+    background-color: #2f75c4  !important;
+    border: 1px solid black !important;
+    -webkit-box-shadow: none !important;
+   box-shadow: none !important;
+   color: black;
   }
 
   .title > a {
-    color: #FFFFFF
+    color: #FFFFFF;
+    padding-left: 5px;
+    padding-right: 5px;
   }
  .title > a:hover{
-    color: #F15B1C;
+
+    color: #00000F;
     text-decoration: none;
   }
 
@@ -54,6 +89,15 @@ textarea, input {
     margin: 20px;
     text-align: center;
   }
-  /* body{
-    background-color: 
-  } */
+
+  .commentsHeader{
+    background-color: #4C85C5;
+    color: #FFFFFF;
+  }
+
+  .noteDiv {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+  }
+

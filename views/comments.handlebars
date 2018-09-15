@@ -1,9 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" target="_blank" href="https://www.npr.org/sections/news/">
+      <img src="https://www.npr.org/about/images/press/Logos/NPRLogo_RGB.png" height="30" alt="NPR Logo">
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
+    
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -15,40 +19,41 @@
         <a class="nav-link" href="/notes">Note JSON</a>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-success scrape" >Scrape NPR</button>
+        <button type="button" class="btn btn-success scrape">Get NPR Stories</button>
       </li>
     </ul>
   </div>
 </nav>
+<div class="container">
   <div class="row">
-    <div class=" col-md-2"></div>
+    <div class=" col-md-1"></div>
 
-    <div class="col-md-8" id="articles">
-      
-      <h2><a href='{{articleAndNotes.linkInfo}}'>{{articleAndNotes.titleInfo}}</a></h2>
+    <div class="col-md-10">
+      <div id="commentsSection">
+        <h2 class="title" style="text-align: center" target="_blank"><a href='{{articleAndNotes.linkInfo}}'>{{articleAndNotes.titleInfo}}</a></h2>
+        <p>{{articleAndNotes.teaserInfo}}</p>
+        <h2 class="commentsHeader">Comments Section</h2>
+     
 
-      <p>{{articleAndNotes.teaserInfo}}</p>
+        {{#each articleAndNotes.note}}
 
-      {{#each articleAndNotes.note}}
+        <div data-id='{{this._id}}' class="noteDiv">
+          <h3>{{this.title}}</h3>
+          <p>{{this.body}}</p>
+          <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Delete Comment</button>
+        </div>
+        <hr>
+        {{/each}}
 
-          <div data-id='{{this._id}}' class="noteDiv">
-            <h3>{{this.title}}</h3>
-            <p>{{this.body}}</p>
-            <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Danger</button>
-            <hr>
-          </div>
+        <div id="commentForm">
 
-
-
-      {{/each}}
-
-      <input id='titleinput' name='title'>
-      <textarea id='bodyinput' name='body'></textarea>
-      <button data-id='{{articleAndNotes._id}}' type="button" class="btn btn-info" id='savenote'>Add Comment</button>
-    
-
+          <input id='titleinput' name='title' placeholder="Comment Title">
+          <textarea id='bodyinput' name='body' placeholder="Comment body. Please be civil!"></textarea>
+          <button data-id='{{articleAndNotes._id}}' type="button" class="btn btn-warning" id='savenote'>Add Comment</button>
+        </div>
+      </div>
     </div>
-    <div class=" col-md-2"></div>
+    <div class=" col-md-1"></div>
 
   </div>
-
+</div>
