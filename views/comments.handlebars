@@ -19,7 +19,7 @@
         <a class="nav-link" href="/notes">Note JSON</a>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-success scrape">Scrape NPR</button>
+        <button type="button" class="btn btn-success scrape">Get NPR Stories</button>
       </li>
     </ul>
   </div>
@@ -32,23 +32,22 @@
       <div id="commentsSection">
         <h2 class="title" style="text-align: center" target="_blank"><a href='{{articleAndNotes.linkInfo}}'>{{articleAndNotes.titleInfo}}</a></h2>
         <p>{{articleAndNotes.teaserInfo}}</p>
-        <h2>Comments Section</h2>
-        <hr>
+        <h2 class="commentsHeader">Comments Section</h2>
+     
 
         {{#each articleAndNotes.note}}
 
         <div data-id='{{this._id}}' class="noteDiv">
           <h3>{{this.title}}</h3>
           <p>{{this.body}}</p>
-          <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Delete
-            Comment</button>
-          <hr>
+          <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Delete Comment</button>
         </div>
+        <hr>
         {{/each}}
 
         <div id="commentForm">
 
-          <input id='titleinput' name='title' placeholder="Title of Comment">
+          <input id='titleinput' name='title' placeholder="Comment Title">
           <textarea id='bodyinput' name='body' placeholder="Comment body. Please be civil!"></textarea>
           <button data-id='{{articleAndNotes._id}}' type="button" class="btn btn-warning" id='savenote'>Add Comment</button>
         </div>

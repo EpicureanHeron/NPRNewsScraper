@@ -1,13 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <a class="navbar-brand" target="_blank" href="https://www.npr.org/sections/news/">
-    <img src="https://www.npr.org/about/images/press/Logos/NPRLogo_RGB.png"    height="30" alt="NPR Logo">
+  <a class="navbar-brand" target="_blank" href="https://www.npr.org/sections/news/">
+    <img src="https://www.npr.org/about/images/press/Logos/NPRLogo_RGB.png" height="30" alt="NPR Logo">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -19,7 +18,7 @@
         <a class="nav-link" href="/notes">Note JSON</a>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-success scrape">Scrape NPR</button>
+        <button type="button" class="btn btn-success scrape">Get NPR Stories</button>
       </li>
     </ul>
   </div>
@@ -28,47 +27,23 @@
 <div class="container">
   <div class="row">
     <div class=" col-md-1"></div>
-
     <div class="col-md-10" id="articles">
       <div class="imageDiv">
         <img class="img-fluid" alt="Responsive image" src="https://media.bizj.us/view/img/7602002/radio-station-booth-stock*750xx2269-1279-0-0.jpg">
       </div>
 
-
       {{#each articles}}
-
       <div data-id='{{this._id}}' class="articleDiv">
         <h2 class="title"><a href='{{this.linkInfo}}' target="_blank">{{this.titleInfo}}</a></h2>
         <p class="teaser">{{this.teaserInfo}}</p>
         <hr>
         <a href="/{{this._id}}">
           <button data-id='{{this._id}}' type="button" class="btn btn-warning ">Go To Comment Section</button>
-          
         </a>
-
       </div>
-
-
-
       {{/each}}
-
 
     </div>
     <div class=" col-md-1"></div>
-    {{!-- <div class="col-md-4" id="notes"> --}}
-
-      {{!-- {{#each articles.note}}
-
-      <div data-id='{{this._id}}' class="noteDiv">
-
-      </div>
-
-      {{/each}} --}}
-
-
-
-
-    </div>
-
   </div>
 </div>
