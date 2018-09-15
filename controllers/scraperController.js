@@ -70,7 +70,7 @@ module.exports = function (app) {
 
     // Route for getting all Articles from the db
     app.get("/articles", function (req, res) {
-        // TODO: Finish the route so it grabs all of the articles
+ 
         db.Article.find({}).sort({date: -1})
 
             .then(function (articles) {
@@ -82,7 +82,7 @@ module.exports = function (app) {
     });
 
     app.get("/notes", function (req, res) {
-        // TODO: Finish the route so it grabs all of the articles
+
         db.Note.find({}).sort({date: -1})
 
             .then(function (articles) {
@@ -95,27 +95,13 @@ module.exports = function (app) {
 
     // Route for grabbing a specific Article by id, populate it with it's note
     app.get("/:id", function (req, res) {
-        // TODO
-        // ====
-        // Finish the route so it finds one article using the req.params.id,
-        // and run the populate method with "note",
-        // then responds with the article with the note included
-
-        //https://stackoverflow.com/questions/17223517/mongoose-casterror-cast-to-objectid-failed-for-value-object-object-at-path
-      //  var articleID = mongoose.Types.ObjectId(req.params.id)
-        
-        // if (mongoose.Types.ObjectId(req.params.id)) {
-
-        //     var articleID = req.params.id
-        // }
-        // else {
-        //     console.log("whoops")
-        // }
 
         var articleID = req.params.id
         db.Article.findOne({ "_id": articleID })
 
-            .populate("note")
+            // .populate("note")
+            .populate({path: 'note', options: { sort: { 'date': -1 } } })
+           
 
             .then(function (articleDBwithNotes) {
                 // console.log(articleDB.note)
@@ -136,20 +122,12 @@ module.exports = function (app) {
 
     // Route for saving/updating an Article's associated Note
     app.post("/articles/:id", function (req, res) {
-        // TODO
-        // ====
-        // save the new note that gets posted to the Notes collection
-        // then find an article from the req.params.id
-        // and update it's "note" property with the _id of the new note
+      
         var notes = req.body
         db.Note.create(notes)
 
             .then(function (noteInfo) {
-
-                //this is from the solution. It doesn't use $set and is using a different method (update vs findOneAndUpdate)
-                // return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: noteInfo._id }, { new: true });
                 return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { note: noteInfo._id } });
-
 
             })
             // add this .then to force a response back to the ajax call so the page would reload after the article is created
@@ -161,7 +139,7 @@ module.exports = function (app) {
             .catch(function (err) {
                 return res.json(err);
             })
-        //res.json??
+
 
     });
 
@@ -188,12 +166,6 @@ module.exports = function (app) {
             .catch(function (err) {
                 return res.json(err)
             })
-
-
-
-
-
-
 
     })
 

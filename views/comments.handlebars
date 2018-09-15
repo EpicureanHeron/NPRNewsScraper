@@ -39,7 +39,9 @@
 
         <div data-id='{{this._id}}' class="noteDiv">
           <h3>{{this.title}}</h3>
+          <p>Posted: {{this.date}}</p>
           <p>{{this.body}}</p>
+          
           <button article-id="{{articleAndNotes._id}}" note-id="{{this._id}}" type="button" class="btn btn-danger">Delete Comment</button>
         </div>
         <hr>
