@@ -1,7 +1,7 @@
 textarea, input {
   
     display: block;
-    width: 50%;
+    width: 80%;
     background-color: #FCF5C7;
   }
   input {
@@ -39,18 +39,20 @@ textarea, input {
     
 
   }
-  .btn-warning{
+  .btn-warning, .btn-danger{
     margin-bottom: 10px;
     margin-top: 10px;
     background-color: #F15B1C;
     font-weight: 600;
     border: 1px solid #ffffff;
+    color:  #ffffff;
   }
 
-  .btn-warning:hover, .btn-warning:active:focus{
+  .btn-warning:hover, .btn-warning:active:focus, .btn-danger:hover, .btn-danger:active:focus{
    
     background-color: #f26b32 !important;
     border: 1px solid black !important;
+    color: black;
     
   }
 
@@ -64,6 +66,7 @@ textarea, input {
     border: 1px solid black !important;
     -webkit-box-shadow: none !important;
    box-shadow: none !important;
+   color: black;
   }
 
   .title > a {
@@ -87,4 +90,14 @@ textarea, input {
     text-align: center;
   }
 
+  .commentsHeader{
+    background-color: #4C85C5;
+    color: #FFFFFF;
+  }
+
+  .noteDiv {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+  }
 
