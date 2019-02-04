@@ -26,3 +26,15 @@ NPR News Scraper is a web app that lets users view and leave comments on the lat
 
 The fullstack is on Heroku including the Mongo database hosted through mongolab (aka mLab MongoDB). 
 
+## Guide to Run Locally
+
+* Download Repo
+
+* Run `npm install`
+
+* Set up Mongo DB called `NPR`
+
+* Start Mongo DB and then run `npm start`
+
+
+
