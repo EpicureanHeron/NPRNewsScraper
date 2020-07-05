@@ -7,9 +7,10 @@ var db = require("../models");
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
-    db.Article.find({}).sort({ date: -1 })
+    db.Article.find({}).lean().sort({ date: -1 })
       .then(function (dbArticles) {
         console.log(dbArticles)
+        console.log("THIS IS IT JOE")
 
         var hbsObject = {
           articles: dbArticles
@@ -97,7 +98,7 @@ module.exports = function (app) {
   app.get("/:id", function (req, res) {
 
     var articleID = req.params.id
-    db.Article.findOne({ "_id": articleID })
+    db.Article.findOne({ "_id": articleID }).lean()
 
       // .populate("note")
       .populate({ path: 'note', options: { sort: { 'date': -1 } } })
