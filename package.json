@@ -20,6 +20,6 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "handlebars": "^4.6.0"
+    "handlebars": "^4.7.6"
   }
 }
