@@ -37,7 +37,7 @@ var ArticleSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Article = mongoose.model("Article", ArticleSchema);
+var Article_NPR = mongoose.model("Article_NPR", ArticleSchema);
 
 // Export the Article model
-module.exports = Article;
+module.exports = Article_NPR;

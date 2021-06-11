@@ -4,10 +4,11 @@ var mongoose = require("mongoose");
 
 var db = require("../models");
 
+
 module.exports = function (app) {
 
   app.get("/", function (req, res) {
-    db.Article.find({}).lean().sort({ date: -1 })
+    db.Article_NPR.find({}).lean().sort({ date: -1 })
       .then(function (dbArticles) {
         console.log(dbArticles)
         console.log("THIS IS IT JOE")
@@ -43,15 +44,15 @@ module.exports = function (app) {
           teaserInfo: teaser
         }
         //checks if the article's title is already in the database
-        db.Article.findOne({ titleInfo: newArticle.titleInfo })
+        db.Article_NPR.findOne({ titleInfo: newArticle.titleInfo })
           .then(function (articleResults) {
             //if no results are found add the article
             if (!articleResults) {
 
-              db.Article.create(newArticle)
-                .then(function (dbArticle) {
+              db.Article_NPR.create(newArticle)
+                .then(function (Article_NPR) {
                   // View the added result in the console
-                  console.log(dbArticle);
+                  console.log(Article_NPR);
                 })
                 .catch(function (err) {
                   // If an error occurred, send it to the client  
@@ -72,7 +73,7 @@ module.exports = function (app) {
   // Route for getting all Articles from the db
   app.get("/articles", function (req, res) {
 
-    db.Article.find({}).sort({ date: -1 })
+    db.Article_NPR.find({}).sort({ date: -1 })
 
       .then(function (articles) {
         res.json(articles)
@@ -98,7 +99,7 @@ module.exports = function (app) {
   app.get("/:id", function (req, res) {
 
     var articleID = req.params.id
-    db.Article.findOne({ "_id": articleID }).lean()
+    db.Article_NPR.findOne({ "_id": articleID }).lean()
 
       // .populate("note")
       .populate({ path: 'note', options: { sort: { 'date': -1 } } })
@@ -128,7 +129,7 @@ module.exports = function (app) {
     db.Note.create(notes)
 
       .then(function (noteInfo) {
-        return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { note: noteInfo._id } });
+        return db.Article_NPR.findOneAndUpdate({ _id: req.params.id }, { $push: { note: noteInfo._id } });
 
       })
       // add this .then to force a response back to the ajax call so the page would reload after the article is created
@@ -149,7 +150,7 @@ module.exports = function (app) {
 
     var noteID = req.params.noteID
 
-    db.Article.update({ _id: articleID }, { $pull: { note: noteID } })
+    db.Article_NPR.update({ _id: articleID }, { $pull: { note: noteID } })
 
       .then(function (responseNotes) {
 
